@@ -10,16 +10,18 @@ source:
 
 build:
   noarch: generic
-  number: 0
+  number: 1
 
 requirements:
   run:
+    - aacon=1.1
     - biopython>=1.7
     - clustalo=1.2.4
     - clustalw=2.1
     - disembl=1.4
     - globplot=2.3
     - gunicorn>=19.9
+    - jronn=7.1
     - mafft=7.458
     - msaprobs=0.9.7
     - muscle=5.1
