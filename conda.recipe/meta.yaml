@@ -22,7 +22,7 @@ requirements:
     - gunicorn>=19.9
     - mafft=7.458
     - msaprobs=0.9.7
-    - muscle=3.8.1551
+    - muscle=5.1
     - probcons=1.12
     - python>=3.8
     - requests>=2.23.0
