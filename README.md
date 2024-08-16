@@ -3,7 +3,7 @@ slivka-bio
 
 Slivka-bio is a pre-configured instance of a slivka project
 targeted for bioinformatics. It contains configurations for tools such
-as Clustal Omega, ClustalW2, Muscle, IUPred, Mafft and more.
+as Clustal Omega, ClustalW2, Muscle, Mafft and more.
 The goal is to provide (almost) ready to use package which bundles
 bioinformatic software in one tool.
 The applications currently available include:
@@ -14,7 +14,6 @@ The applications currently available include:
  - [ClustalW2](http://www.clustal.org/clustal2/)
  - [DisEMBL](http://dis.embl.de/)
  - [GlobPlot](http://globplot.embl.de/)
- - [IUPred](http://iupred.enzim.hu) (sources not included)
  - [JPred](https://www.compbio.dundee.ac.uk/jpred/index_up.html)
  - JRonn (Java implementation of [RONN](https://www.bioinformatics.nl/~berndb/ronn.html))
  - [MAFFT](https://mafft.cbrc.jp/alignment/software/)
@@ -26,7 +25,7 @@ The applications currently available include:
 Downloading slivka-bio
 ======================
 
-To download slivka-bio, you have two options:
+To download slivka-bio, you have three options:
 
 1. **Download the zip file**: you can directly download end extract the
 project as a zip from the following link: 
@@ -45,7 +44,7 @@ This will download the *v0.8.3* version of slivka-bio into a directory
 named *slivka-bio* or into your conda environment files.
 The project, however, requires *slivka* and the bioinformatic tools to work.
 If you choose to download the project sources, the dependencies need to be
-installed manually. The conda installation installs (almost) all tools
+installed manually. The conda installation installs all tools
 and dependencies automatically.
 
 Conda Installation
@@ -58,8 +57,7 @@ installed, follow the miniconda installation instructions from
 
 Once the conda installation completes, create a new conda environment
 that will contain slivka and most of the bioinformatic tools used by
-slivka-bio. Installation of programs not available through conda is
-covered later in this document.
+slivka-bio.
 
 Installing from environment file
 --------------------------------
@@ -69,7 +67,7 @@ The slivka-bio repository contains an exported conda environment file
 slivka. It automatically takes care of tool versions and dependencies.
 You can create a new environment named *slivka-bio* and install the
 packages from the environment file using the following command. You can
-choose a different name for the environment if you prefer. 
+choose a different *name* for the environment if you prefer. 
  
 ```sh
 conda env create --name slivka-bio --file environment.yaml
@@ -176,40 +174,6 @@ full control over it you are free to do so.  After the compilation, make sure
 that the binary location is included in the PATH variable or set the absolute
 path to the binary in the service configuration file.
 
-#### IUPred ####
-
-Due to the legal limitations, IUPred sources could not be included in
-the slivka-bio package nor can be provided through conda.
-If you wish to use it, you can obtain the sources from
-[iupred website](http://iupred.enzim.hu/Downloads.php).
-Then, place them in *bin/iupred* directory and run ``make iupred``.
-
-Compiling IUPred requires C compiler, which is a part of the GNU
-toolchain, to be installed on your system.
-Make sure that `make` and `gcc` are available on your system.
-
-On Debian/Ubuntu/Mint they can be installed with
-```sh
-apt-get install make gcc
-```
-
-On CentOS/Redhat/Fedora they are available as part of the Development Tools
-```sh
-yum group install "Development Tools"
-```
-
-Using homebrew on MacOS
-```sh
-brew install make gcc
-```
-
-Using conda package manager
-```sh
-conda install gcc_linux-64  # linux
-conda install clang_osx-64  # MacOS
-```
-
-For other operating systems refer to you package manager repositories.
 
 ## WSGI server ##
 
