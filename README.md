@@ -6,7 +6,7 @@ targeted for bioinformatics. It contains configurations for tools such
 as Clustal Omega, ClustalW2, Muscle, Mafft and more.
 The goal is to provide (almost) ready to use package which bundles
 bioinformatic software in one tool.
-The applications currently available include:
+The applications whose configurations are currently available include:
 
 
  - [AACon](https://www.compbio.dundee.ac.uk/aacon/)
@@ -37,7 +37,7 @@ git clone --branch v0.8.3 --single-branch https://github.com/bartongroup/slivka-
 3. **Install with conda**: slivka-bio and all its dependencies can be installed
 automatically by conda package manager
 ```sh
-conda install -c slivka -c mmwarowny -c bioconda -c conda-forge slivka-bio=0.8.3
+conda install -c slivka -c bartongroup -c bioconda -c conda-forge slivka-bio=0.8.3
 ```
 
 This will download the *v0.8.3* version of slivka-bio into a directory
@@ -109,12 +109,12 @@ Installing bioinformatic tools
 ------------------------------
 
 If you chose to install slivka-bio dependencies using the environment
-file then all of the tools are already installed in your environment.
+file then all of the tools will be installed in your environment.
 
 However, if you decided to install or update them manually, they
-are available as packages from *bioconda* or my *mmwarowny* channels
+are available as packages from *bioconda* or *bartongroup* channels
 
-### Bioconda ###
+### bioconda channel ###
 
 The following tools are available from the bioconda:
 
@@ -130,10 +130,11 @@ The following tools are available from the bioconda:
   - rnaalifold
 
 You can install them with the command below (remember to activate the
-conda environment first). I advise against installing t-coffee from
-bioconda as their package locks version of other bioinformatic tools
+conda environment first). However, I advise against installing t-coffee from
+*bioconda* as their package locks version of other bioinformatic tools
 causing version conflicts. An alternative, dependency-free version is
-provided by my *mmwarowny* channel.
+provided by *bartongroup* channel. If you want to install t-coffee from
+bioconda anyway, add `t-coffee=13.46` to the command.
 
 ```sh
 conda install -c bioconda -c conda-forge \
@@ -145,25 +146,24 @@ conda install -c bioconda -c conda-forge \
     msaprobs=0.9.7 \
     muscle=5.1 \
     probcons=1.12 \
-    t-coffee=13.46 \
     viennarna=2.6.4
 ```
 
-### My own conda channel ###
+### bartongroup channel ###
 
 For the long line tools DisEMBL and GlobPlot depended on a closed-source Tisean
 package and could not be added to bioconda. However, after the license changes,
-they are now openly available from my *mmwarowny* channel.
+they are now openly available from our *bartongroup* channel.
 
 ```sh
-conda install -c mmwarowny -c conda-forge disembl=1.4 globplot=2.3
+conda install -c bartongroup -c conda-forge disembl=1.4 globplot=2.3
 ```
 
-If you decide not to install bioconda version of *t-coffee* package, you can
-install it from my channel with:
+If you haven't installed *t-coffee* from *bioconda*, you can do it now
+with the following command:
 
 ```sh
-conda install -c mmwarowny -c conda-forge t_coffee=13.46
+conda install -c bartongroup -c conda-forge t_coffee=13.46
 ```
 
 ### Building from sources ###
