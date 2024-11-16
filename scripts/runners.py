@@ -20,8 +20,8 @@ class JPredRunner(Runner):
         response = requests.post(
             '%s/job' % self._host,
             data=content.encode(),
-            headers={'Content-type': 'text/txt'}
-        )
+            headers={'Content-type': 'text/txt'}, 
+        timeout=60)
         response.raise_for_status()
         result_url = response.headers['Location']
         with open(os.path.join(cwd, 'stdout'), 'wb') as fp:
@@ -40,12 +40,12 @@ class JPredRunner(Runner):
         tarball = os.path.join(cwd, 'result.tar.gz')
         if os.path.exists(tarball):
             return JobStatus.COMPLETED
-        response = requests.get('%s/job/id/%s' % (cls._host, job_id))
+        response = requests.get('%s/job/id/%s' % (cls._host, job_id), timeout=60)
         response.raise_for_status()
         if "finished" not in response.text:
             return JobStatus.RUNNING
         archive_url = '{0}/results/{1}/{1}.tar.gz'.format(cls._jpred4, job_id)
-        arch_response = requests.get(archive_url, stream=True)
+        arch_response = requests.get(archive_url, stream=True, timeout=60)
         arch_response.raise_for_status()
         with open(tarball, 'wb') as fp:
             for chunk in arch_response.iter_content(chunk_size=4096):
