@@ -1,180 +1,185 @@
 slivka-bio
 ==========
 
-Slivka-bio is a pre-configured instance of a slivka project using conda
+Slivka-bio is a pre-configured instance of a slivka project
 targeted for bioinformatics. It contains configurations for tools such
-as Clustal Omega, ClustalW2, Muscle, IUPred, Mafft and more.
+as Clustal Omega, ClustalW2, Muscle, Mafft and more.
 The goal is to provide (almost) ready to use package which bundles
 bioinformatic software in one tool.
-The applications currently available include:
+The applications whose configurations are currently available include:
 
+
+ - [AACon](https://www.compbio.dundee.ac.uk/aacon/)
  - [Clustal Omega](http://www.clustal.org/omega/)
  - [ClustalW2](http://www.clustal.org/clustal2/)
- - [MUSCLE](https://www.drive5.com/muscle/)
- - [T-Coffee](http://tcoffee.org/)
- - [AACon](https://www.compbio.dundee.ac.uk/aacon/)
- - [IUPred](http://iupred.enzim.hu) (sources not included)
- - [MAFFT](https://mafft.cbrc.jp/alignment/software/)
- - [ProbCons](http://probcons.stanford.edu/)
- - [MSAProbs](http://msaprobs.sourceforge.net/homepage.htm)
- - [GlobPlot](http://globplot.embl.de/)
  - [DisEMBL](http://dis.embl.de/)
- - JRonn (Java implementation of [RONN](https://www.bioinformatics.nl/~berndb/ronn.html))
+ - [GlobPlot](http://globplot.embl.de/)
  - [JPred](https://www.compbio.dundee.ac.uk/jpred/index_up.html)
+ - JRonn (Java implementation of [RONN](https://www.bioinformatics.nl/~berndb/ronn.html))
+ - [MAFFT](https://mafft.cbrc.jp/alignment/software/)
+ - [MSAProbs](http://msaprobs.sourceforge.net/homepage.htm)
+ - [MUSCLE](https://www.drive5.com/muscle/)
+ - [ProbCons](http://probcons.stanford.edu/)
+ - [T-Coffee](http://tcoffee.org/)
 
+Downloading slivka-bio
+======================
 
-Quick Installation with Conda
-=============================
+To download slivka-bio, you have three options:
 
-The easiest way to install slivka-bio with most of the tools and dependencies
-is by using a slivka-bio package available from our anaconda channel.
-If you don't have conda installed on your system, follow the miniconda
-installation from [conda user guide](https://docs.conda.io/projects/conda/en/latest/user-guide/index.html).
-Then, run
-
+1. **Download the zip file**: you can directly download end extract the
+project as a zip from the following link: 
+[slivka-bio v0.8.3](https://github.com/bartongroup/slivka-bio/archive/refs/heads/v0.8.3.zip).
+2. **Clone the git repository**:
 ```sh
-conda create -n '<your-env-name>'
-conda activate '<your-env-name>'
-conda install -c slivka -c mmwarowny -c bioconda slivka-bio
+git clone --branch v0.8.3 --single-branch https://github.com/bartongroup/slivka-bio.git
+```
+3. **Install with conda**: slivka-bio and all its dependencies can be installed
+automatically by conda package manager
+```sh
+conda install -c slivka -c bartongroup -c bioconda -c conda-forge slivka-bio=0.8.3
 ```
 
-It will automatically install slivka-bio and bioinformatic tools
-in the chosen environment.
-Follow to the [configuration](#configuration) section if you need to
-customise some of the settings.
+This will download the *v0.8.3* version of slivka-bio into a directory
+named *slivka-bio* or into your conda environment files.
+The project, however, requires *slivka* and the bioinformatic tools to work.
+If you choose to download the project sources, the dependencies need to be
+installed manually. The conda installation installs all tools
+and dependencies automatically.
 
+Conda Installation
+==================
 
-Manual Installation
-===================
+The recommended way to manage slivka installation and dependencies
+is through conda package manager. If you don't have `conda` or `mamba`
+installed, follow the miniconda installation instructions from
+[conda user guide](https://docs.conda.io/projects/conda/en/latest/user-guide/index.html).
+
+Once the conda installation completes, create a new conda environment
+that will contain slivka and most of the bioinformatic tools used by
+slivka-bio.
+
+Installing from environment file
+--------------------------------
+
+The slivka-bio repository contains an exported conda environment file
+*environment.yaml*. Importing it is the easiest way to get started with
+slivka. It automatically takes care of tool versions and dependencies.
+You can create a new environment named *slivka-bio* and install the
+packages from the environment file using the following command. You can
+choose a different *name* for the environment if you prefer. 
+ 
+```sh
+conda env create --name slivka-bio --file environment.yaml
+```
+
+If you chose this installation option, you can skip the
+*installing slivka* section and installation of bioinformatic tools with
+conda.
 
 Installing slivka
 -----------------
 
-The recommended way to manage slivka installation and dependencies
-is through conda package manager. If you don't have conda installed
-on your system yet, follow the miniconda installation instructions
-from [conda user guide](https://docs.conda.io/projects/conda/en/latest/user-guide/index.html).
-Once the conda installation completes, create a new conda environment
-with python version 3.10 and activate it. Substitute the environment
-name of your choice for `slivka` if needed.
+If you prefer not to import the existing environment and manage software
+versions yourself, you can install slivka from our conda channel or from
+sources.
+Our conda channel *slivka* contains more stable versions of slivka. At
+the time of writing, the current version is 0.8.3. It is recommended to
+use python version 3.10 which should be compatible with all
+bioinformatic tools used by slivka.
 
 ```sh
-conda create -n slivka python=3.10
-conda activate slivka
+conda install python=3.10 slivka::slivka=0.8.3
 ```
 
-Make sure that ``python`` executable points to the binary located
-in the conda environment.
-Next, download and install Slivka python package as well
-as slivka-bio configuration files from our github repository.
-For the time being, we recommend using the version from the dev branch
-until the first stable version is released.
+Alternatively, if you like living on the edge, you can install the
+version directly from sources from github. You can choose the branch you
+wish to fetch the sources from by specifying the `--branch` option.
 
 ```sh
-git clone --branch dev --single-branch https://github.com/bartongroup/slivka.git
+git clone --branch master --single-branch https://github.com/bartongroup/slivka.git
 (cd slivka; python setup.py install)
-git clone --branch dev --single-branch https://github.com/bartongroup/slivka-bio.git
 ```
 
-Keep in mind that slivka-bio does not include any bioinformatic tools.
-If you choose this installation route, you need to provide them by yourself.
+Keep in mind that slivka-bio does not include binaries for bioinformatic
+tools except for JRONN and AACon.
+You need to install them manually from conda or from sources.
 
 Installing bioinformatic tools
 ------------------------------
 
-If you choose to install slivka-bio using conda then all the tools,
-except IUPred, are automatically installed by conda.
-However, if you decide to install or update them manually, most them
-are available from bioconda, my private conda channel - *mmwarowny*,
-or are shipped with slivka-bio.
+If you chose to install slivka-bio dependencies using the environment
+file then all of the tools will be installed in your environment.
 
-### Bioconda ###
+However, if you decided to install or update them manually, they
+are available as packages from *bioconda* or *bartongroup* channels
 
-Tools: ClustalO, ClustalW, MUSCLE, T-Coffee, MSAProbs, Probcons,
-MAFFT and RNAalifold can be installed with conda package manager
-from the bioconda channel.
+### bioconda channel ###
 
-You can install each tool running the following commands
-(remember to activate the conda environment first)
+The following tools are available from the bioconda:
+
+  - aacon
+  - clustalo
+  - clustalw
+  - jronn
+  - mafft
+  - msaprobs
+  - muscle
+  - probcons
+  - t-coffee
+  - rnaalifold
+
+You can install them with the command below (remember to activate the
+conda environment first). However, I advise against installing t-coffee from
+*bioconda* as their package locks version of other bioinformatic tools
+causing version conflicts. An alternative, dependency-free version is
+provided by *bartongroup* channel. If you want to install t-coffee from
+bioconda anyway, add `t-coffee=13.46` to the command.
 
 ```sh
-conda config --add channels conda-forge
-conda config --add channels bioconda
-conda install clustalo clustalw muscle t_coffee msaprobs probcons mafft
+conda install -c bioconda -c conda-forge \
+    aacon=1.1 \
+    clustalo=1.2.4 \
+    clustalw=2.1 \
+    jronn=7.1 \
+    mafft=7.458 \
+    msaprobs=0.9.7 \
+    muscle=5.1 \
+    probcons=1.12 \
+    viennarna=2.6.4
 ```
 
-### Private conda channel ###
+### bartongroup channel ###
 
-Tools: DisEMBL and GlobPlot as well as a more recent version of
-T-Coffee for macOS and linux are available from the *mmwarowny* channel.
+For the long line tools DisEMBL and GlobPlot depended on a closed-source Tisean
+package and could not be added to bioconda. However, after the license changes,
+they are now openly available from our *bartongroup* channel.
 
 ```sh
-conda config --add channels mmwarowny
-conda install disembl globplot t_coffee
+conda install -c bartongroup -c conda-forge disembl=1.4 globplot=2.3
 ```
 
-### Java ###
-
-Tools AACon and JRonn are shipped as compiled Java executables and
-require Java 1.8 or later to be installed on your system. Most system
-provide Java Runtime Environment out-of-the-box but if it's not the
-case you can install it using conda.
+If you haven't installed *t-coffee* from *bioconda*, you can do it now
+with the following command:
 
 ```sh
-conda install openjdk
+conda install -c bartongroup -c conda-forge t_coffee=13.46
 ```
 
 ### Building from sources ###
 
-It is highly recommended to install the bioinformatic tools using
-the package managers.
-However, if you prefer building bioinformatic tools from the sources
-and have a full control over the installation process you are free
-to do so.
-After the compilation, make sure that the binary location is included
-in the PATH variable or set the absolute path to the binary in the
-service configuration file.
+It is highly recommended to install the bioinformatic tools using the package
+managers.  However, if you prefer building them from the sources and have a
+full control over it you are free to do so.  After the compilation, make sure
+that the binary location is included in the PATH variable or set the absolute
+path to the binary in the service configuration file.
 
-#### IUPred ####
-
-Due to the legal limitations, IUPred sources could not be included in
-the slivka-bio package nor can be provided through conda.
-If you wish to use it, you can download the sources from
-[iupred website](http://iupred.enzim.hu/Downloads.php).
-Then, place them in *bin/iupred* directory and run ``make iupred``.
-
-Compiling IUPred requires C compiler, which is a part of the GNU
-toolchain, to be installed on your system.
-Make sure that `make` and `gcc` are available on your system.
-
-On Debian/Ubuntu/Mint they can be installed with
-```sh
-apt-get install make gcc
-```
-
-On CentOS/Redhat/Fedora they are available as part of the Development Tools
-```sh
-yum group install "Development Tools"
-```
-
-Using homebrew on MacOS
-```sh
-brew install make gcc
-```
-
-Using conda package manager
-```sh
-conda install gcc_linux-64  # linux
-conda install clang_osx-64  # MacOS
-```
-
-For other operating systems refer to you package manager repositories.
 
 ## WSGI server ##
 
 Web Service Gateway Interface is a convention for web servers to
 forward HTTP requests to python application.
-Recommeded middleware supported by Slivka include
+Recommended middleware supported by Slivka include
 [Gunicorn](https://gunicorn.org/) and
 [uWSGI](https://uwsgi-docs.readthedocs.io/en/latest/).
 You need to install one of those (both available as conda packages)
@@ -192,7 +197,7 @@ in the repository root directory
 The configurations for each service is located in its respective file
 in the *services* folder.
 If slivka-bio was installed with conda package manager, the configuration
-files are located at ``$CONDA_PREFIX/var/slivka-bio``
+files are located at `$CONDA_PREFIX/var/slivka-bio`
 
 For in depth service configuration instructions refer to the
 [slivka documentation](http://bartongroup.github.io/slivka/).

@@ -1,0 +1,24 @@
+name: slivka-bio
+channels:
+  - slivka
+  - bartongroup
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - aacon=1.1
+  - clustalo=1.2.4
+  - clustalw=2.1
+  - disembl=1.4
+  - globplot=2.3
+  - jronn=7.1
+  - mafft=7.458
+  - msaprobs=0.9.7
+  - muscle=5.1
+  - probcons=1.12
+  - bartongroup::t_coffee=13.46
+  - viennarna=2.6.4
+  - slivka=0.8.3
+  - ca-certificates
+  - openssl

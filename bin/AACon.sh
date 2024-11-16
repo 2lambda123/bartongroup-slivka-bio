@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-java -jar $SLIVKA_HOME/bin/compbio-conservation-1.1.jar $*
+aacon $*
 returncode=$?
 if [ $returncode -ne 0 ]; then
     exit $returncode
